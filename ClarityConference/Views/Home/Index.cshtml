@@ -1,0 +1,47 @@
+﻿@model ClarityConference.Models.ConferenceViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+   <div class="col-md-12">
+       <h3 class="text-alight">Conference Details</h3>
+       <hr />
+       <ul>
+           <li>@Html.LabelFor(vm => vm.Name):@Html.ValueFor(vm => vm.Name)</li>
+           <li>@Html.LabelFor(vm => vm.Description):@Html.ValueFor(vm => vm.Description)</li>
+           <li><b>Address</b>: @Html.ValueFor(vm => vm.Street),@Html.ValueFor(vm => vm.City),@Html.ValueFor(vm => vm.State) @Html.ValueFor(vm => vm.ZipCode)</li>
+       </ul>
+   </div>
+
+    
+<div class="row">
+    <div class="col-md-12">
+
+            <ul>
+                @if (Model != null)
+                {
+                    foreach (var client in Model.Clients)
+                    {
+                        <h3>Clients:</h3>
+                        <hr />
+                        <li><b>Name: </b>@client.Name</li>
+                        <li><b>Phone #:</b> @client.Phone</li>
+                        <li><b>Email: </b>@client.Email</li>
+                        <li><b>Address: </b>@client.Street, @client.City, @client.State @client.ZipCode</li>
+                        <br />
+                        <h4>Attendees:</h4>
+                        foreach (var attendee in client.Attendees)
+                        {
+
+                            <li><b>Name</b>:@attendee.Name </li>
+                            <li><b>Email</b>:@attendee.Email </li>
+                           <br />
+                        }
+                    }
+                }
+        </ul>
+    </div>
+
+</div>
